@@ -1,9 +1,22 @@
-const axios = require('axios');
+console.log('hello')
 
-axios.get('https://xivapi.com/item/1675?private_key=9518c8b308d749f09ed6c90b84952950f7d81b0db19d4cbbb06db6a228801194')
+// const axios = require('axios');
+// axios.get('https://xivapi.com/character/search?name=[Venus Eros]&server=[Gilgamesh]')
+// 3659532
+axios.get('https://xivapi.com/character/3659532?data=AC,FR,FC,FCM,PVP')
   .then(function (response) {
     // handle success
     console.log(response);
+    console.log(response.data.Character.Avatar);
+    // let venus_eros = response.data.Character.Avatar;
+    let venus_eros = response.data.Character.Portrait;
+    let character_name = response.data.Character.Name;
+    let fc = response.data.Character.FreeCompanyName;
+    let server = response.data.Character.Server;
+    $('#venus_eros').append('<img src="' + venus_eros + '">');
+    $('#venus_eros').append('<p> Character Name: ' + character_name + '</p>');
+    $('#venus_eros').append('<p> Free Company: ' + fc + '</p>');
+    $('#venus_eros').append('<p> Server: ' + server + '</p>');
   })
   .catch(function (error) {
     // handle error
@@ -11,4 +24,5 @@ axios.get('https://xivapi.com/item/1675?private_key=9518c8b308d749f09ed6c90b8495
   })
   .then(function () {
     // always executed
+    console.log('is this thing on inside the axios get')
   });
